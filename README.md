@@ -17,17 +17,18 @@
 
 2. Feature Selection Rationale
    We selected features that capture historical, behavioral, and financial risk indicators. Each reflects either default risk, volatility, or usage                   discipline.
+   
+   | Feature            | Description                                          | Risk Implication                           |
+   | ------------------ | ---------------------------------------------------- | ------------------------------------------ |
+   | `repayment_ratio`  | Total repaid / Total borrowed                        | Low ratio implies higher credit risk       |
+   | `num_liquidations` | How often wallet was liquidated                      | High count indicates poor risk management  |
+   | `wallet_age_days`  | Time since the wallet's first tx                     | Older wallets are more trustworthy         |
+   | `collateral_ratio` | Avg. ratio of supplied collateral to borrowed amount | Higher = better buffer against liquidation |
+   | `tx_frequency`     | Count of DeFi interactions over time                 | Indicates engagement & transparency        |
 
-  Feature	                   Description	                                                           Risk Implication
-  repayment_ratio	           Total repaid / Total borrowed	                                         Low ratio implies higher credit risk
-  num_liquidations	         How often wallet was liquidated	                                       High count indicates poor risk management
-  wallet_age_days	           Time since the wallet's first tx	                                       Older wallets are more trustworthy
-  collateral_ratio	         Avg. ratio of supplied collateral to borrowed amount	                   Higher = better buffer against liquidation
-  tx_frequency	             Count of DeFi interactions over time	                                   Indicates engagement & transparency
 
 
-
-3. Scoring Method
+4. Scoring Method
   We designed a normalized, weighted scoring model that produces a risk score from 0 (risky) to 1000 (safe).
 
   Steps:
